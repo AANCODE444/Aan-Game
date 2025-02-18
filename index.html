@@ -1,73 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuxuryBrand - 1000x Elegance</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@300;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Tech Ultra</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0a0f24;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Particles Background */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00ffab;
+      text-transform: uppercase;
+      text-shadow: 0 5px 15px rgba(0, 255, 171, 0.7);
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: 600;
+      font-size: 18px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    header nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #00ffab;
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    header nav a:hover::after {
+      width: 100%;
+    }
+
+    header nav a:hover {
+      color: #00ffab;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(10, 15, 36, 0.9), rgba(27, 42, 65, 0.8));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 80px;
+      color: #00ffab;
+      text-transform: uppercase;
+      text-shadow: 0 5px 20px rgba(0, 255, 171, 0.5);
+      animation: zoomIn 2s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 22px;
+      margin: 20px 0 40px;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    .hero button {
+      padding: 15px 40px;
+      font-size: 20px;
+      color: #081c24;
+      background: #00ffab;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      animation: fadeInUp 3s ease-in-out;
+    }
+
+    .hero button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 255, 171, 0.6);
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .features {
+      padding: 100px 50px;
+      background: #1b2a41;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 40px;
+      color: #00ffab;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .feature-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      background: #273956;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      width: 300px;
+      margin: 20px;
+      transition: transform 0.4s;
+      text-align: center;
+    }
+
+    .feature:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 255, 171, 0.7);
+    }
+
+    .feature h3 {
+      color: #00ffab;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .feature p {
+      font-size: 16px;
+      color: #cfd9e0;
+    }
+
+    .contact {
+      padding: 100px 50px;
+      background: linear-gradient(135deg, #081c24, #1b2a41);
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 40px;
+      color: #00ffab;
+      margin-bottom: 30px;
+    }
+
+    .contact p {
+      font-size: 18px;
+      color: #cfd9e0;
+      margin-bottom: 30px;
+    }
+
+    .contact a {
+      display: inline-block;
+      padding: 15px 40px;
+      background: #00ffab;
+      color: #081c24;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .contact a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 255, 171, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #081c24;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <!-- Parallax Header Section -->
-    <header class="parallax">
-        <nav>
-            <div class="logo">LuxuryBrand</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <a class="cta" href="#">Get Started</a>
-        </nav>
-        <div class="header-content">
-            <h1>Luxury at its Finest</h1>
-            <p>Indulge in the Art of Sophistication</p>
-            <a href="#" class="header-btn">Explore Now</a>
-        </div>
-    </header>
+  <canvas id="particles"></canvas>
+  <audio id="background-music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <header>
+    <div class="logo">Future Tech Ultra</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="about-content">
-            <h2>About Us</h2>
-            <p>LuxuryBrand is dedicated to creating timeless designs that embody elegance and modernity. Our works inspire, connect, and provide experiences that are unparalleled in the digital world.</p>
-        </div>
-        <img src="about-image.jpg" alt="About Us">
-    </section>
+  <section class="hero">
+    <div>
+      <h1>Welcome to the Future</h1>
+      <p>The most advanced technology experience is here.</p>
+      <button>Discover Now</button>
+    </div>
+  </section>
 
-    <!-- Services Section -->
-    <section class="services">
-        <h2>Our Exclusive Services</h2>
-        <div class="service-cards">
-            <div class="service-card">
-                <h3>Custom Web Design</h3>
-                <p>We craft luxurious digital experiences with cutting-edge technology.</p>
-            </div>
-            <div class="service-card">
-                <h3>Premium Branding</h3>
-                <p>Building sophisticated brands that stand the test of time.</p>
-            </div>
-            <div class="service-card">
-                <h3>Consulting for Success</h3>
-                <p>Exclusive consultation services to elevate your digital presence.</p>
-            </div>
-        </div>
-    </section>
+  <section id="features" class="features">
+    <h2>Our Features</h2>
+    <div class="feature-container">
+      <div class="feature">
+        <h3>AI Integration</h3>
+        <p>Cutting-edge artificial intelligence to power your world.</p>
+      </div>
+      <div class="feature">
+        <h3>Innovative Design</h3>
+        <p>Beautiful and functional design to elevate your experience.</p>
+      </div>
+      <div class="feature">
+        <h3>Ultra Security</h3>
+        <p>Your safety is our priority with advanced encryption.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 LuxuryBrand. Elegance redefined.</p>
-            <ul class="social-links">
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Twitter</a></li>
-            </ul>
-        </div>
-    </footer>
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions? Get in touch today!</p>
+    <a href="https://wa.me/6289518303639" target="_blank">Contact via WhatsApp</a>
+  </section>
 
-    <script src="script.js"></script>
+  <footer>
+    <p>&copy; 2025 Future Tech Ultra. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    let particlesArray = [];
+    const colors = ['#00ffab', '#00ffff', '#ffffff'];
+
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+      for (let i = 0; i < 100; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function Particle() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 5 + 1;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.speedX = Math.random() * 3 - 1.5;
+      this.speedY = Math.random() * 3 - 1.5;
+    }
+
+    Particle.prototype.update = function () {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.size > 0.1) this.size -= 0.01;
+    };
+
+    Particle.prototype.draw = function () {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+    };
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach((particle, index) => {
+        particle.update();
+        particle.draw();
+        if (particle.size <= 0.1) {
+          particlesArray.splice(index, 1);
+          particlesArray.push(new Particle());
+        }
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', init);
+
+    init();
+    animate();
+  </script>
+  <script>
+  window.addEventListener("load", function() {
+    const audio = document.getElementById("background-music");
+    audio.play().catch((error) => {
+      console.error("User interaction required to play audio:", error);
+    });
+  });
+</script>
 </body>
 </html>
