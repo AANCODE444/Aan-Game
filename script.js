@@ -6,11 +6,12 @@ canvas.height = window.innerHeight;
 
 const player = {
     x: canvas.width / 2,
-    y: canvas.height - 50,
-    width: 40,
-    height: 40,
+    y: canvas.height - 60,
+    width: 50,
+    height: 50,
     color: "blue",
-    speed: 5
+    speed: 5,
+    dx: 0
 };
 
 const bullets = [];
@@ -18,11 +19,13 @@ const enemies = [];
 
 function drawPlayer() {
     ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, player.width, player.height);
+    ctx.beginPath();
+    ctx.arc(player.x, player.y, player.width / 2, 0, Math.PI * 2);
+    ctx.fill();
 }
 
 function drawBullets() {
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "yellow";
     bullets.forEach((bullet, index) => {
         ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
         bullet.y -= bullet.speed;
@@ -63,6 +66,11 @@ function detectCollisions() {
 
 function updateGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    player.x += player.dx;
+
+    if (player.x < 0) player.x = 0;
+    if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+
     drawPlayer();
     drawBullets();
     drawEnemies();
@@ -70,24 +78,35 @@ function updateGame() {
     requestAnimationFrame(updateGame);
 }
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" && player.x > 0) {
-        player.x -= player.speed;
-    }
-    if (e.key === "ArrowRight" && player.x + player.width < canvas.width) {
-        player.x += player.speed;
-    }
-    if (e.key === " ") {
-        bullets.push({ x: player.x + 15, y: player.y, width: 10, height: 20, speed: 7 });
-    }
+// 🎮 Kontrol Analog Virtual
+const joystick = document.getElementById("joystick");
+const stick = document.getElementById("stick");
+
+joystick.addEventListener("touchstart", () => {
+    player.dx = -player.speed;
+});
+joystick.addEventListener("touchend", () => {
+    player.dx = 0;
 });
 
+// 🔫 Tombol Tembak
+document.getElementById("shootButton").addEventListener("click", () => {
+    bullets.push({
+        x: player.x - 5,
+        y: player.y - 10,
+        width: 10,
+        height: 20,
+        speed: 7
+    });
+});
+
+// ⏳ Spawning Enemies
 setInterval(() => {
     enemies.push({
-        x: Math.random() * (canvas.width - 40),
+        x: Math.random() * (canvas.width - 50),
         y: 0,
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         speed: 2
     });
 }, 1000);
