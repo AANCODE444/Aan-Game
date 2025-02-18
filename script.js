@@ -78,19 +78,39 @@ function updateGame() {
     requestAnimationFrame(updateGame);
 }
 
-// 🎮 Kontrol Analog Virtual
+// 🎮 Analog Virtual (Fix agar bisa ke kiri & kanan)
 const joystick = document.getElementById("joystick");
 const stick = document.getElementById("stick");
 
-joystick.addEventListener("touchstart", () => {
-    player.dx = -player.speed;
+let joystickActive = false;
+let startX = 0;
+
+joystick.addEventListener("touchstart", (e) => {
+    joystickActive = true;
+    startX = e.touches[0].clientX;
 });
+
+joystick.addEventListener("touchmove", (e) => {
+    if (!joystickActive) return;
+
+    let moveX = e.touches[0].clientX - startX;
+
+    if (moveX < -20) {
+        player.dx = -player.speed;
+    } else if (moveX > 20) {
+        player.dx = player.speed;
+    } else {
+        player.dx = 0;
+    }
+});
+
 joystick.addEventListener("touchend", () => {
+    joystickActive = false;
     player.dx = 0;
 });
 
-// 🔫 Tombol Tembak
-document.getElementById("shootButton").addEventListener("click", () => {
+// 🔫 Tombol Tembak (Fix agar berfungsi)
+document.getElementById("shootButton").addEventListener("touchstart", () => {
     bullets.push({
         x: player.x - 5,
         y: player.y - 10,
