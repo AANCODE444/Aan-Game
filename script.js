@@ -1,6 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-
+const playerImg = document.getElementById("playerImg");
+const enemyImg = document.getElementById("enemyImg");
+const bgImg = document.getElementById("backgroundImg");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -18,12 +20,23 @@ const bullets = [];
 const enemies = [];
 
 function drawPlayer() {
-    ctx.fillStyle = player.color;
-    ctx.beginPath();
-    ctx.arc(player.x, player.y, player.width / 2, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.drawImage(playerImg, player.x - 25, player.y - 25, 50, 50);
 }
 
+function drawEnemies() {
+    enemies.forEach((enemy) => {
+        ctx.drawImage(enemyImg, enemy.x, enemy.y, enemy.width, enemy.height);
+    });
+}
+let bgY = 0;
+function drawBackground() {
+    ctx.drawImage(bgImg, 0, bgY, canvas.width, canvas.height);
+    ctx.drawImage(bgImg, 0, bgY - canvas.height, canvas.width, canvas.height);
+    bgY += 2;
+    if (bgY >= canvas.height) {
+        bgY = 0;
+    }
+}
 function drawBullets() {
     ctx.fillStyle = "yellow";
     bullets.forEach((bullet, index) => {
@@ -66,6 +79,7 @@ function detectCollisions() {
 
 function updateGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
     player.x += player.dx;
 
     if (player.x < 0) player.x = 0;
@@ -77,7 +91,6 @@ function updateGame() {
     detectCollisions();
     requestAnimationFrame(updateGame);
 }
-
 // 🎮 Analog Virtual (Fix agar bisa ke kiri & kanan)
 const joystick = document.getElementById("joystick");
 const stick = document.getElementById("stick");
