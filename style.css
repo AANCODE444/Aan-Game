@@ -1,53 +1,194 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    touch-action: manipulation;
 }
 
+/* Body */
 body {
-    overflow: hidden;
-    background-color: black;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    line-height: 1.6;
 }
 
-canvas {
-    display: block;
-    background: #222;
-}
-
-/* 🎮 Analog Virtual */
-#joystick {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+/* Header */
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('header-bg.jpg') no-repeat center center/cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    touch-action: none;
+    text-align: center;
+    color: #fff;
 }
 
-#stick {
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    position: relative;
-}
-
-/* 🔫 Tombol Tembak */
-#shootButton {
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
     position: absolute;
-    bottom: 50px;
-    right: 50px;
-    padding: 20px;
-    background: red;
-    color: white;
-    font-size: 20px;
-    border: none;
+    top: 0;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+}
+
+nav .cta {
+    background-color: #f39c12;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+nav .cta:hover {
+    background-color: #d35400;
+}
+
+.header-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.header-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.header-btn {
+    background-color: #f39c12;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.header-btn:hover {
+    background-color: #d35400;
+}
+
+/* About Section */
+.about {
+    padding: 100px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-content {
+    max-width: 50%;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+}
+
+.about img {
+    max-width: 40%;
     border-radius: 10px;
-    touch-action: none;
+}
+
+/* Services Section */
+.services {
+    padding: 100px 50px;
+    text-align: center;
+    background-color: #1e1e1e;
+}
+
+.services h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.service-cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.service-card {
+    background-color: #333;
+    padding: 40px;
+    width: 30%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.service-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.service-card p {
+    font-size: 1.2rem;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background-color: #121212;
+    padding: 40px 50px;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 10px;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links li {
+    margin: 0 10px;
+}
+
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #f39c12;
 }
