@@ -1,10 +1,50 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    touch-action: manipulation;
+}
+
+body {
     overflow: hidden;
     background-color: black;
 }
 
 canvas {
     display: block;
-    background: #111;
+    background: #222;
+}
+
+/* 🎮 Analog Virtual */
+#joystick {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#stick {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* 🔫 Tombol Tembak */
+#shootButton {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    padding: 15px;
+    background: red;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
 }
